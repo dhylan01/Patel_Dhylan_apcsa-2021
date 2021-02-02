@@ -6,7 +6,7 @@
 //Class -
 //Lab  -
 
-import static java.lang.System.*;
+
 
 public class StarsRunner
 {
