@@ -17,20 +17,34 @@ public class StringEquality
 	}
 
 	public StringEquality(String one, String two)
-	{
+	{ 
+		wordOne = one;
+		wordTwo = two;
 	}
 
 	public void setWords(String one, String two)
 	{
+		wordOne = one;
+		wordTwo = two;
 	}
 
 	public boolean checkEquality( )
 	{
-		return false;
-	}
+		if (!(wordOne.equals(wordTwo))) {
+			return false;
+		}
+		else {
+		return true;
+		}
+		}
 
 	public String toString()
 	{
+		if (checkEquality()== false) {
 		return wordOne + " does not have the same letters as " + wordTwo + "\n";
-	}
+		}
+		else {
+		return wordOne + " does have the same letters as " + wordTwo + "\n";
+		}
+		}
 }

@@ -12,27 +12,33 @@ import java.util.Scanner;
 public class StringOddOrEven
 {
 	private String word;
+	private String output;
 
 	public StringOddOrEven()
 	{
 	}
 
-	public StringOddOrEven(String s)
-	{
+	public StringOddOrEven(String input)
+	{ word = input;
 	}
 
 	public void setString(String s)
-	{
+	{ word = s;
 	}
 
- 	public boolean isEven()
+ 	public void isEven()
  	{
-		return false;
+		if (word.length()%2 == 0) {
+			output = "even" ;
+		}
+		else {
+			output = "odd";
+		}
+		
 	}
 
  	public String toString()
  	{
- 		String output="";
  		return output;
 	}
 }

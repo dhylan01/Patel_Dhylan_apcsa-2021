@@ -6,8 +6,14 @@
 
 public class FirstLastVowel
 {
-   public static String go( String a )
-	{
-		return "add code here";
+   public  String go( String a )
+	{ 
+	   String lastv = a.substring(a.length()-1, a.length());
+	   if (lastv.equalsIgnoreCase("a") || lastv.equalsIgnoreCase("e")|| lastv.equalsIgnoreCase("i")|| lastv.equalsIgnoreCase("o")|| lastv.equalsIgnoreCase("u")) {
+		return "yes";
+	}
+	else {
+		return "no";
+	}
 	}
 }
