@@ -12,7 +12,8 @@ public class CardTester {
 		Card card1 = new Card("King", "Hearts", 13);
 		Card card2 = new Card("Joker", "Hearts", 13);
 		Card card3 = new Card("King", "Hearts", 13);
-		card1.matches(card2);
-		card3.toString();
+		System.out.println(card1.matches(card3));
+		System.out.println(card1.matches(card2));
+		System.out.println("Card 1 is " + card1);
 	}
 }
