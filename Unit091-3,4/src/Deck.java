@@ -69,9 +69,16 @@ public class Deck {
 	 * Randomly permute the given collection of cards
 	 * and reset the size to represent the entire deck.
 	 */
-	public void shuffle() {
+	public static void shuffle(int[] values) {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 4 *** */
-	
+		int temp = 0;
+		int rando = 0;
+		for (int k = 0; k < values.length; k++) {
+			rando = (int) (Math.random() * values.length);
+			temp = values[rando];
+			values[rando] = values[k];
+			values[k] = temp;
+		}
 	}
 
 	/**
@@ -97,7 +104,7 @@ public class Deck {
 		String rtn = "size = " + size + "\nUndealt cards: \n";
 
 		for (int k = size - 1; k >= 0; k--) {
-			rtn = rtn + cards.length;
+			rtn = rtn + cards[k];
 			if (k != 0) {
 				rtn = rtn + ", ";
 			}
@@ -109,7 +116,7 @@ public class Deck {
 
 		rtn = rtn + "\nDealt cards: \n";
 		for (int k = cards.length - 1; k >= size; k--) {
-			rtn = rtn + cards.length;
+			rtn = rtn + cards[k];
 			if (k != size) {
 				rtn = rtn + ", ";
 			}
