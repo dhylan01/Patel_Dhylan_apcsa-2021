@@ -12,6 +12,7 @@ public class DeckTester {
 		Deck test = new Deck(new String[] {"jack", "queen", "king"}, new String[] {"blue", "red"}, new int[] {11, 12, 13});
 		System.out.println(test);
 		test.deal();
+		test.shuffle(new int[] {11,12,13});
 		
 	}
 }

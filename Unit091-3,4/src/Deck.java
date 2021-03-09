@@ -69,7 +69,7 @@ public class Deck {
 	 * Randomly permute the given collection of cards
 	 * and reset the size to represent the entire deck.
 	 */
-	public static void shuffle(int[] values) {
+	public int[] shuffle(int[] values) {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 4 *** */
 		int temp = 0;
 		int rando = 0;
@@ -79,6 +79,7 @@ public class Deck {
 			values[rando] = values[k];
 			values[k] = temp;
 		}
+		return values;
 	}
 
 	/**
