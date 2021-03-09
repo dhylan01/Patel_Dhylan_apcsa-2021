@@ -11,9 +11,10 @@ public class ListSumFirst
 
 	public static int go(List<Integer> ray)
 	{
+		int first = ray.get(0);
 		int sum = 0;
 		for (int num: ray) {
-			if (ray.get(0) < ray.get(num)) {
+			if (first < num) {
 				sum += ray.get(num);
 			}
 		}
