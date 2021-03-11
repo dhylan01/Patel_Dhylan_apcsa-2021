@@ -9,10 +9,13 @@ public class DeckTester {
 	 */
 	public static void main(String[] args) {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 2 *** */
-		Deck test = new Deck(new String[] {"jack", "queen", "king"}, new String[] {"blue", "red"}, new int[] {11, 12, 13});
+		String[] rat = {"jack", "queen", "king"};
+		String[] beta = {"blue", "red"};
+		int[] alpha = {11,12,13};
+		Deck test = new Deck(rat, beta, alpha);
 		System.out.println(test);
 		test.deal();
-		test.shuffle(new int[] {11,12,13});
+		test.shuffle();
 		
 	}
 }
