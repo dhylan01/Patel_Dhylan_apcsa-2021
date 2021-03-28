@@ -42,7 +42,7 @@ public class Deck {
 			}
 		}
 	
-	*/
+	*/	cards = new ArrayList<Card>();
 		size = ranks.length*suits.length;
 		for (int rank = 0; rank < ranks.length; rank++) {
 			for (String suit: suits) {
@@ -102,8 +102,9 @@ public class Deck {
 		if (isEmpty()) {
 			return null;
 		}
+		
 		size -= 1;
-		return cards[size];
+		return cards.get(size);
 	}
 
 	/**

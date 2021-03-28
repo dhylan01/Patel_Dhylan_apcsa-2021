@@ -71,7 +71,16 @@ public class ElevensBoard extends Board {
 	@Override
 	public boolean anotherPlayIsPossible() {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 9 *** */
-	
+		// try and make a for loop where for eveyr value in card indexes you pass it through Cardat and put a new array in
+		// if that does not work then try deal
+		List<Integer> select = new ArrayList<Integer>();
+		for (int card : cardIndexes()) {
+			select.add(cardAt(card).pointValue());
+		}
+		if (containsPairSum11(select) || containsJQK(select)) {
+			return true;
+		}
+		else return false;
 	}
 
 	/**
