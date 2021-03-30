@@ -1,3 +1,4 @@
+package activity9;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -78,18 +79,15 @@ public class Deck {
 	 */
 	public void shuffle() {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 4 *** */
-		Card temp;
-		int shuffleIndex;
-		
-		for (int i = cards.size()-1; i>=0; i-=1) {
-			shuffleIndex = (int)(Math.random()*(i+1));
-			temp = cards.get(shuffleIndex);
-			cards.add(shuffleIndex, cards.get(i));
-			cards.add(i, temp);
-		}
-		
-		size=cards.size();
-		
+		  for (int k = cards.size() - 1; k > 0; k--) {
+			   int howMany = k + 1;
+			   int start = 0;
+			   int randPos = (int) (Math.random() * howMany) + start;
+			   Card temp = cards.get(k);
+			   cards.set(k, cards.get(randPos));
+			   cards.set(randPos, temp);
+			  }
+			  size = cards.size();
 	}
 
 	/**
@@ -116,7 +114,7 @@ public class Deck {
 		String rtn = "size = " + size + "\nUndealt cards: \n";
 
 		for (int k = size - 1; k >= 0; k--) {
-			rtn = rtn + cards[k];
+			rtn = rtn + cards.get(k);
 			if (k != 0) {
 				rtn = rtn + ", ";
 			}
@@ -127,12 +125,12 @@ public class Deck {
 		}
 
 		rtn = rtn + "\nDealt cards: \n";
-		for (int k = cards.length - 1; k >= size; k--) {
-			rtn = rtn + cards[k];
+		for (int k = cards.size() - 1; k >= size; k--) {
+			rtn = rtn + cards.get(k);
 			if (k != size) {
 				rtn = rtn + ", ";
 			}
-			if ((k - cards.length) % 2 == 0) {
+			if ((k - cards.size()) % 2 == 0) {
 				// Insert carriage returns so entire deck is visible on console.
 				rtn = rtn + "\n";
 			}

@@ -1,3 +1,4 @@
+package activity9;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -53,9 +54,10 @@ public class ElevensBoard extends Board {
 	 */
 	@Override
 	public boolean isLegal(List<Integer> selectedCards) {
+		System.out.println(selectedCards);
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 9 *** */
-		containsJQK(selectedCards);
-		containsPairSum11(selectedCards);
+		if (selectedCards.size() == 3) containsJQK(selectedCards);
+		if (selectedCards.size() == 3) containsPairSum11(selectedCards);
 		return false;
 		
 	}
@@ -73,10 +75,7 @@ public class ElevensBoard extends Board {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 9 *** */
 		// try and make a for loop where for eveyr value in card indexes you pass it through Cardat and put a new array in
 		// if that does not work then try deal
-		List<Integer> select = new ArrayList<Integer>();
-		for (int card : cardIndexes()) {
-			select.add(cardAt(card).pointValue());
-		}
+		List<Integer> select = cardIndexes();
 		if (containsPairSum11(select) || containsJQK(select)) {
 			return true;
 		}
@@ -116,7 +115,8 @@ public class ElevensBoard extends Board {
 		boolean hKing = false;
 		boolean hQueen = false;
 		boolean hJack = false;
-		for (Integer card: selectedCards) {
+			for (Integer card: selectedCards) {
+			
 			Card here = cardAt(card);
 			if (here.rank().equals("king"))
 			{
@@ -128,10 +128,11 @@ public class ElevensBoard extends Board {
 			if (here.rank().equals("king")) {
                 hJack = true;
             }
-		}
+			}
 		if (hKing && hQueen && hJack) {
 			return true;
 		}
-		else return false;
+	
+		 return false;
 	}
 }
