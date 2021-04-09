@@ -1,3 +1,5 @@
+  
+import java.util.Arrays;
 //(c) A+ Computer Science
 //www.apluscompsci.com
 //Name -
@@ -9,24 +11,48 @@ public class Grid
    //load vals into the rows x cols grid randomly
 	public Grid(int rows, int cols, String[] vals)
 	{
+		grid = new String[rows][cols];
+		for (String[] row: grid) {
+			for(String val: row) {
+				val = vals[(int) (Math.random()*vals.length)];
+			}
+		}
+	
 	}
 
 	//find out which of the vals occurs the most
 	public String findMax(String[] vals)
 	{
-		return "nothing yet";
+		int[] counter = new int[vals.length];
+		for (int i = 0; i < vals.length; i++) {
+			counter[i]= countVals(vals[i]);
+		}
+		int maxInt = 0;
+		for (int i = 0; i < vals.length; i++) {
+			if(counter[i] > maxInt) maxInt = i;
+		}
+		return vals[maxInt];
 	}
 
 	//returns a count of how many times val occurs in the matrix
 	private int countVals( String val )
-	{
-		return 0;
+	{ int count = 0;
+		for (String[] row: grid) {
+			for (String in: row) {
+				if (val.equals(in)) count++;
+			}
+		}
+		return count;
 	}
 
 	//display the grid
 	public String toString()
 	{
 		String output="";
+		for (int row=0; row<grid.length; row++)
+		{
+			output=output+"\n"+Arrays.deepToString(grid[row]);
+		}
 		return output;
 	}
 }
