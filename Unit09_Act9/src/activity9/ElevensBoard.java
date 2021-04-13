@@ -41,6 +41,7 @@ public class ElevensBoard extends Board {
 	 */
 	 public ElevensBoard() {
 	 	super(BOARD_SIZE, RANKS, SUITS, POINT_VALUES);
+	 	System.out.println("Dhylan Patel, Period 3, 4/13/21");
 	 }
 
 	/**
@@ -56,10 +57,37 @@ public class ElevensBoard extends Board {
 	public boolean isLegal(List<Integer> selectedCards) {
 		System.out.println(selectedCards);
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 9 *** */
-		if (selectedCards.size() == 3) containsJQK(selectedCards);
-		if (selectedCards.size() == 3) containsPairSum11(selectedCards);
-		return false;
-		
+		if (selectedCards.size() == 2) {
+			int hKingP = 0;
+			int hQueenP = 0;
+			int hJackP = 0;
+				for (Integer card: selectedCards) {
+				
+				Card here = cardAt(card);
+				if (here.rank().equals("king"))
+				{
+					hKingP+= 1;
+				}
+				if (here.rank().equals("queen")) {
+					hQueenP += 1;
+				}
+				if (here.rank().equals("jack")) {
+	                hJackP += 1;
+	            }
+				}
+				if ( (hKingP == 2) || (hJackP == 2) || (hQueenP == 2) ) {
+					return true;
+				}
+		}
+		if (selectedCards.size()==3) {
+			int sum = 0;
+			for (int card: selectedCards) {
+				sum += cardAt(card).pointValue();
+			}
+			return sum==11;
+		}
+		else return false;
+	
 	}
 
 	/**
@@ -75,12 +103,39 @@ public class ElevensBoard extends Board {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 9 *** */
 		// try and make a for loop where for eveyr value in card indexes you pass it through Cardat and put a new array in
 		// if that does not work then try deal
-		List<Integer> select = cardIndexes();
-		if (containsPairSum11(select) || containsJQK(select)) {
-			return true;
+		boolean possible=false;
+		List<Integer> selection = new ArrayList<Integer>();
+		for (int card1=0; card1<BOARD_SIZE; card1++) 
+		{
+			selection.add(card1);
+			for (int card2=card1+1; card2<BOARD_SIZE; card2++)
+			{
+				selection.add(card2);
+				possible=(containsJQK(selection));
+				if (possible) break;
+				selection.remove(1);
+			}
+			if (possible) break;
+			for (int card2=card1+1; card2<BOARD_SIZE; card2++)
+			{
+				selection.add(card2);
+				for (int card3=card2+1; card3<BOARD_SIZE; card3++)
+				{
+					selection.add(card3);
+					possible=(containsPairSum11(selection));
+					if (possible) break;
+					selection.remove(2);
+				}
+				if (possible) break;
+				selection.remove(1);
+			}
+			if (possible) break;
+			selection.remove(0);
 		}
-		else return false;
+		return possible;
 	}
+
+	
 
 	/**
 	 * Check for an 11-pair in the selected cards.
@@ -92,10 +147,10 @@ public class ElevensBoard extends Board {
 	 */
 	private boolean containsPairSum11(List<Integer> selectedCards) {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 9 *** */
-		if (selectedCards.size()==2) {
+		if (selectedCards.size()==3) {
 			int sum = 0;
 			for (int card: selectedCards) {
-				sum = cardAt(card).pointValue();
+				sum += cardAt(card).pointValue();
 			}
 			return sum==11;
 		}
@@ -112,27 +167,27 @@ public class ElevensBoard extends Board {
 	 */
 	private boolean containsJQK(List<Integer> selectedCards) {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 9 *** */
-		boolean hKing = false;
-		boolean hQueen = false;
-		boolean hJack = false;
+		int hKingP = 0;
+		int hQueenP = 0;
+		int hJackP = 0;
 			for (Integer card: selectedCards) {
 			
 			Card here = cardAt(card);
 			if (here.rank().equals("king"))
 			{
-				hKing=true;
+				hKingP+= 1;
 			}
 			if (here.rank().equals("queen")) {
-				hQueen = true;
+				hQueenP += 1;
 			}
-			if (here.rank().equals("king")) {
-                hJack = true;
+			if (here.rank().equals("jack")) {
+                hJackP += 1;
             }
 			}
-		if (hKing && hQueen && hJack) {
-			return true;
-		}
+			if ( (hKingP == 2) || (hJackP == 2) || (hQueenP == 2) ) {
+				return true;
+			}
 	
-		 return false;
+			else return false;
 	}
 }
