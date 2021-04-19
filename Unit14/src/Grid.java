@@ -11,10 +11,12 @@ public class Grid
    //load vals into the rows x cols grid randomly
 	public Grid(int rows, int cols, String[] vals)
 	{
-		grid = new String[rows][cols];
-		for (String[] row: grid) {
-			for(String val: row) {
-				val = vals[(int) (Math.random()*vals.length)];
+		grid= new String[rows][cols];
+		for (int row=0; row<grid.length; row++) 
+		{
+			for (int col=0; col<grid[row].length; col++)
+			{
+				grid[row][col]=vals[(int)(Math.random()*vals.length)];
 			}
 		}
 	
@@ -31,7 +33,7 @@ public class Grid
 		for (int i = 0; i < vals.length; i++) {
 			if(counter[i] > maxInt) maxInt = i;
 		}
-		return vals[maxInt];
+		return vals[maxInt] + " Occurs the most";
 	}
 
 	//returns a count of how many times val occurs in the matrix
