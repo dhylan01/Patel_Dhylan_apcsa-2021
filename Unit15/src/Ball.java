@@ -5,7 +5,7 @@
 import java.awt.Color;
 import java.awt.Graphics;
 
-public class Ball extends Block
+public class Ball extends Block implements Collidable
 {
 	private int xSpeed;
 	private int ySpeed;
@@ -90,27 +90,54 @@ public class Ball extends Block
 		return ySpeed;
 	}
 	
-   public void moveAndDraw(Graphics window)
-   {
-   	//draw a white ball at old ball location
-
-
-      setX(getX()+xSpeed);
-		//setY
-
-		//draw the ball at its new location
-   }
    
-	public boolean equals(Object obj)
-	{
-
-
-
-
-		return false;
-	}   
 
    //add the get methods
-
+	public boolean didCollideLeft(Object obj)
+	{
+		Block other = (Block)obj;
+		return (getX() <= (other.getX() + other.getWidth() + Math.abs(getXSpeed()))
+				&& getX() > (other.getX() - getWidth() - Math.abs(getXSpeed()))
+				&& getX()>=(other.getX())
+				&& getY()<=(other.getY()+other.getHeight())
+				&& (getY()+getHeight())>=other.getY());
+	}
+	public boolean didCollideRight(Object obj)
+	{
+		Block other = (Block)obj;
+		return (getX() < (other.getX() + other.getWidth() + Math.abs(getXSpeed()))
+				&& getX() >= (other.getX() - getWidth() - Math.abs(getXSpeed()))
+				&& getX()<=other.getX()+other.getWidth()
+				&& getY()<=(other.getY()+other.getHeight())
+				&& (getY()+getHeight())>=other.getY());
+	}
+	
+	public boolean didCollideTop(Object obj)
+	{
+		Block other = (Block)obj;
+		return (getY() >= (other.getY() - getHeight() - Math.abs(getYSpeed()))
+				&& getY() < (other.getY() + other.getHeight() + Math.abs(getYSpeed())) 
+				&& (getX()>=other.getX()
+				&& getX()<=(other.getX()+other.getWidth())
+				&& (getX()+getWidth())>=other.getX()
+				&& (getX()+getWidth())<=other.getX()+other.getWidth()));
+	}
+	
+	public boolean didCollideBottom(Object obj)
+	{
+		
+		Block other = (Block)obj;
+		return (getY() > (other.getY() - getHeight() - Math.abs(getYSpeed()))
+				&& getY() <= (other.getY() + other.getHeight() + Math.abs(getYSpeed())) 
+				&& (getX()>=other.getX()
+				&& getX()<=(other.getX()+other.getWidth())
+				&& (getX()+getWidth())>=other.getX()
+				&& (getX()+getWidth())<=other.getX()+other.getWidth()));
+	}
+	
    //add a toString() method
+	public String toString()
+	{
+		return super.toString()+" "+xSpeed+" "+ySpeed;
+	}
 }

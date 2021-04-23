@@ -16,12 +16,10 @@ public class Paddle extends Block
       speed = 5;
    }
    public Paddle(int x, int y) {
-	   setxPos(x);
-	   setyPos(y);
+	   setPos(x,y);
    }
    public Paddle(int x, int y, int width) {
-	   setxPos(x);
-	   setyPos(y);
+	   setPos(x,y);
 	   setWidth(width);
    }
    public Paddle (int x, int y, int width, int height, int speed)
@@ -71,4 +69,7 @@ public class Paddle extends Block
    	}
    
    //add a toString() method
+   	public String toString() {
+   		return getX() + "" + getY() + "" + getWidth() + "" + getHeight() + "" + getColor() + "" + speed;
+   	}
 }
