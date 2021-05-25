@@ -306,7 +306,7 @@ public class Picture extends SimplePicture
   }
 
   /** Method to create a collage of several pictures */
-  public void createCollage(int rowStart; int colstart)
+ /* public void createCollage(int rowStart; int colstart)
   {
     Picture flower1 = new Picture("file:///D:/Mauro_CSA_FIles/Patel_Dhylan_apcsa-2021/Unit16/src/images/flower1.jpg");
     Picture flower2 = new Picture("file:///D:/Mauro_CSA_FIles/Patel_Dhylan_apcsa-2021/Unit16/src/images/flower2.jpg");
@@ -329,30 +329,28 @@ public class Picture extends SimplePicture
     */
   public void edgeDetection(int edgeDist)
   {
-    Pixel leftPixel = null;
-    Pixel rightPixel = null;
-    Pixel[][] pixels = this.getPixels2D();
-    Color rightColor = null;
-    for (int row = 0; row < pixels.length; row++)
-    {
-      for (int col = 0; 
-           col < pixels[0].length-1; col++)
-      {
-        leftPixel = pixels[row][col];
-        rightPixel = pixels[row][col+1];
-        rightColor = rightPixel.getColor();
-        if (leftPixel.colorDistance(rightColor) > 
-            edgeDist)
-          leftPixel.setColor(Color.BLACK);
-        else
-          leftPixel.setColor(Color.WHITE);
-        if (leftPixel.colorDistance((pixels[row - 1][col].getColor())) > edgeDist) {
-        	leftPixel.setBlue(0);
-        	leftPixel.setGreen(0);
-        	leftPixel.setRed(0);
-        }
-      }
-    }
+	  Pixel leftPixel = null;
+	    Pixel rightPixel = null;
+	    Pixel topPixel = null;
+	    Pixel bottomPixel = null;
+	    
+	    Pixel[][] pixels = this.getPixels2D();
+	    for (int row = 0; row < pixels.length - 1; row++)
+	    {
+	      for (int col = 0; 
+	           col < pixels[0].length-1; col++)
+	      {
+	        leftPixel = pixels[row][col];
+	        rightPixel = pixels[row][col+1];
+	        topPixel = pixels[row][col];
+	        bottomPixel = pixels[row + 1][col];
+	        if (leftPixel.colorDistance(rightPixel.getColor()) > edgeDist ||
+	            topPixel.colorDistance(bottomPixel.getColor()) > edgeDist)
+	          leftPixel.setColor(Color.BLACK);
+	        else
+	          leftPixel.setColor(Color.WHITE);
+	      }
+	    }
   }
   
   
