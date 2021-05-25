@@ -82,6 +82,14 @@ public class PictureTester
     snowman.mirrorArms();
     snowman.explore();
   }
+  public static void testBlur(int x, int y, int w, int h, int n)
+  {
+    Picture redMoto = new Picture("D:/Mauro_CSA_FIles/Patel_Dhylan_apcsa-2021/Unit16/src/images/redMotorcycle.jpg");
+    for (int i = 0; i<n; i++){
+        redMoto.blur(x,y,w,h);
+      }
+      redMoto.explore();
+  }
   public static void testMirrorGull()
   {
     Picture gull = new Picture("D:/Mauro_CSA_FIles/Patel_Dhylan_apcsa-2021/Unit16/src/images/seagull.jpg");
@@ -93,7 +101,7 @@ public class PictureTester
   public static void testCollage()
   {
     Picture canvas = new Picture("D:/Mauro_CSA_FIles/Patel_Dhylan_apcsa-2021/Unit16/src/images/640x480.jpg");
-    canvas.createCollage();
+ //   canvas.createCollage();
     canvas.explore();
   }
   
@@ -117,7 +125,8 @@ public class PictureTester
     //testKeepOnlyRed();
     //testKeepOnlyGreen();
     //testNegate();
-   testGrayscale();
+  // testGrayscale();
+	  testBlur(180,160,25,25,10);
     //testMirrorVerticalRightToLeft();
     //testMirrorHorizontal();
     //testMirrorHorizontalBotToTop();
@@ -125,11 +134,11 @@ public class PictureTester
     //testMirrorVertical();
     //testMirrorTemple();
     //testMirrorArms();
-    testMirrorGull();
+  //  testMirrorGull();
     //testMirrorDiagonal();
     //testCollage();
     //testCopy();
-    testEdgeDetection();
+  //  testEdgeDetection();
     //testEdgeDetection2();
     //testChromakey();
     //testEncodeAndDecode();

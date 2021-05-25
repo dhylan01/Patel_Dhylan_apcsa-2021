@@ -102,7 +102,7 @@ public class Picture extends SimplePicture
 	  for (Pixel[] row: pixels) {
 		  for (Pixel item: row) {
 			  item.setRed(0);
-			  item.setGreen(0);
+			  item.setRed(0);
 			  
 		  }
 	  }
@@ -121,7 +121,7 @@ public class Picture extends SimplePicture
 	  Pixel[][] pixels = this.getPixels2D();
 	  for (Pixel[] row: pixels) {
 		  for (Pixel item: row) {
-			  int avg = (item.getBlue() + item.getGreen() + item.getRed() )/3;
+			  int avg = (item.getBlue() + item.getRed() + item.getRed() )/3;
 			  item.setBlue(avg);
 			  item.setRed(avg);
 			  item.setBlue(avg);
@@ -327,6 +327,51 @@ public class Picture extends SimplePicture
   /** Method to show large changes in color 
     * @param edgeDist the distance for finding edges
     */
+  public void blur(int x, int y, int w, int h) {
+	  System.out.println("Dhylan Patel \n Period 3 \n 5/25/21");
+	  Pixel[][] pixels = this.getPixels2D();
+	  Pixel leftPixel = null;
+	    Pixel rightPixel = null;
+	    Pixel topPixel = null;
+	    Pixel bottomPixel = null;
+		  Pixel leftTopPixel = null;
+		    Pixel rightTopPixel = null;
+		    Pixel leftBotPixel = null;
+		    Pixel rightBotPixel = null;
+		double avg = 0.0;
+
+	  for (int row = 0; row < h; row ++) {
+		  for (int col = 0; col < w; col++) {
+			  if (row == 0 && col == 0) {
+				  leftPixel = pixels[x][y];
+				  rightPixel = pixels[x][y+ col + 1];
+				  topPixel = pixels[x][ y];
+				  bottomPixel = pixels[x+ 1][y];
+				  leftTopPixel = pixels[x][y];
+				  rightTopPixel = pixels[x][y];
+				  leftBotPixel = pixels[x][y];
+				  rightBotPixel = pixels[x+ 1][y+ 1];
+			  }
+			  else {
+				  leftPixel = pixels[x+ row][y+ col - 1];
+				  rightPixel = pixels[x+ row][y+ col + 1];
+				  topPixel = pixels[x+ row - 1][y+ col];
+				  bottomPixel = pixels[x+ row + 1][y+ col];
+				  leftTopPixel = pixels[x+ row - 1][y+ col - 1];
+				  rightTopPixel = pixels[x+ row - 1][y+ col + 1];
+				  leftBotPixel = pixels[x+ row + 1][y+ col - 1];
+				  rightBotPixel = pixels[x+  row + 1][y + col + 1];
+			  }
+			  avg = (leftPixel.getRed() + rightPixel.getRed() + topPixel.getRed() + bottomPixel.getRed() + leftTopPixel.getRed() + rightTopPixel.getRed() + leftBotPixel.getRed() + rightBotPixel.getRed() + pixels[x+ row][x+ col].getRed())/9;
+			  pixels[y][x].setRed((int)avg);
+			  avg = (leftPixel.getBlue() + rightPixel.getBlue() + topPixel.getBlue() + bottomPixel.getBlue() + leftTopPixel.getBlue() + rightTopPixel.getBlue() + leftBotPixel.getBlue() + rightBotPixel.getBlue() + pixels[x+ row][x+ col].getBlue())/9;
+			  pixels[y][x].setBlue((int)avg);
+			  avg = (leftPixel.getRed() + rightPixel.getRed() + topPixel.getRed() + bottomPixel.getRed() + leftTopPixel.getRed() + rightTopPixel.getRed() + leftBotPixel.getRed() + rightBotPixel.getRed() + pixels[x+ row][x+ col].getRed())/9;
+			  pixels[y][x].setRed((int)avg);
+		  }
+	  }
+	
+  }
   public void edgeDetection(int edgeDist)
   {
 	  Pixel leftPixel = null;
@@ -350,6 +395,7 @@ public class Picture extends SimplePicture
 	        else
 	          leftPixel.setColor(Color.WHITE);
 	      }
+	      
 	    }
   }
   
